@@ -20,9 +20,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.MYTOKEN }}
         with:
-          source-directory: 'output'
+          source-directory: "output"
           destination-github-username: ghkd1418
-          destination-repository-name: hairthon
+          destination-repository-name: hairthon-client
           user-email: ${{ secrets.EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main

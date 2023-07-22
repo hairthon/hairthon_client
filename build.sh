@@ -3,5 +3,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./hairthon-team/* ./output
-cp -R ./output ./hairthon-team/re
+cp -R ./hairthon/* ./output
+cp -R ./output ./hairthon/re
