@@ -1,4 +1,4 @@
-// build.sh 파일
+# // build.sh 파일
 
 #!/bin/sh
 cd ../
