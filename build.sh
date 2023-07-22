@@ -4,4 +4,4 @@
 cd ../
 mkdir output
 cp -R ./hairthon_client/* ./output
-cp -R ./output ./hairthon_client/re
+cp -R ./output ./hairthon_client/
