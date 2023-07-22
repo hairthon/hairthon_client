@@ -7,7 +7,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className} bg-red-100`}
     >
-      헤어톤 테스트ssss
+      헤어톤 테스트ssssdd
     </main>
   );
 }
