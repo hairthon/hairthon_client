@@ -1,7 +1,8 @@
 import { api } from "@/pages/api/api-config";
+import { Button, Modal, Popconfirm, message } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export function UploadImage() {
   const { query, push } = useRouter();
@@ -44,6 +45,29 @@ export function UploadImage() {
     //   ? push("/result?mode=analyze")
     //   : push("/result?mode=synthesis");
   };
+
+  const info = () => {
+    Modal.info({
+      title: "정확한 결과를 받기위해 지켜주세요!",
+      content: (
+        <>
+          <p className="text-gray-500">{"<예시사진>"}</p>
+          <img src="/example.png" alt="" className="mb-5" />
+          <div>
+            <p>- 예시 사진과 같이 얼굴이 나온 부분을 확대해서 잘라주세요</p>
+            <p>- 얼굴이 가려진 사진은 인식이 불가능합니다</p>
+            <p>- 해상도가 높을수록 결과가 잘 나옵니다</p>
+            <p>- .jpg 확장자 사진만 가능합니다</p>
+          </div>
+        </>
+      ),
+      onOk() {},
+    });
+  };
+
+  useEffect(() => {
+    info();
+  }, []);
 
   return (
     <>
