@@ -6,15 +6,16 @@ import React, { useState } from "react";
 export function UploadImage() {
   const { query, push } = useRouter();
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [img, setImg] = useState<File | string>("");
   console.log(
     "🚀 ~ file: UploadImage.tsx:8 ~ UploadImage ~ selectedImages:",
     selectedImages
   );
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files![0];
     console.log(file);
-
+    setImg(file);
     if (file) {
       const reader = new FileReader();
 
@@ -28,16 +29,20 @@ export function UploadImage() {
     }
   };
 
-  // 생각해보니 api 호출이 하나만 있으면 되네..
-  const handleToResult = () => {
-    // const formData = new FormData();
-    // formData.append("image", selectedImages[0]);
-    // api.post("/dl_Img", {
-    //   formData,
-    // });
-    query.mode == "analyze"
-      ? push("/result?mode=analyze")
-      : push("/result?mode=synthesis");
+  const handleToResult = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", img);
+      const data = await api.post("/dl_Img", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(data);
+    } catch (error) {
+      console.error();
+    }
+    // query.mode == "analyze"
+    //   ? push("/result?mode=analyze")
+    //   : push("/result?mode=synthesis");
   };
 
   return (
@@ -75,7 +80,7 @@ export function UploadImage() {
             id="upload"
             type="file"
             alt="이미지 업로드"
-            accept="image/jpg, image/png"
+            accept="image/jpg"
             className="hidden"
             // multiple
             onChange={handleImageChange}
