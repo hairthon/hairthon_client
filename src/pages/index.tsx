@@ -1,23 +1,10 @@
 import { Inter } from "next/font/google";
-import { useEffect } from "react";
-import { api } from "./api/api-config";
 import Image from "next/image";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const fetchData = async () => {
-    const data = await api.get("/");
-    console.log(data);
-    return data;
-  };
-
-  useEffect(() => {
-    const data = fetchData();
-    console.log(data);
-  }, []);
-
   return (
     <main
       className={`flex min-h-screen flex-col items-center ${inter.className} h-screen`}
