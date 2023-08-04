@@ -1,5 +1,5 @@
 import { api } from "@/pages/api/api-config";
-import { Button, Modal, Popconfirm, message } from "antd";
+import { Button, Modal, Space } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -61,12 +61,13 @@ export function UploadImage() {
           </div>
         </>
       ),
+      okType: "default",
       onOk() {},
     });
   };
 
   useEffect(() => {
-    info();
+    // info();
   }, []);
 
   return (
@@ -112,9 +113,12 @@ export function UploadImage() {
         </form>
       </div>
 
-      <p className="text-black">
-        얼굴이 정면을 향하고 가려진 부분이 없는 사진을 업로드 해주세요.
-      </p>
+      <div>
+        <Space wrap>
+          <Button onClick={info}>tip</Button>
+        </Space>
+      </div>
+
       <button
         className={`px-3 py-2 rounded-lg mt-10 ${
           selectedImages.length > 0 ? "bg-black" : "bg-gray-400"
