@@ -1,3 +1,4 @@
+import { shape } from "@/lib/const";
 import { Progress } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,17 +7,13 @@ import { useEffect, useState } from "react";
 export default function Result() {
   const [image, setImage] = useState("");
   const [data, setData] = useState({
-    계란형_얼굴: 0,
-    긴_얼굴: 0,
-    "네모형-각진얼굴": 0,
-    둥근형_얼굴: 0,
-    "하트형-역삼각형_얼굴": 0,
+    heart_tri: 0,
+    long: 0,
+    egg: 0,
+    round: 0,
+    square: 0,
   });
-  console.log(
-    "🚀 ~ file: index.tsx:17 ~ Result ~ data:",
-    Math.max(...Object.values(data))
-    // Object.keys(data).reduce((a, b) => (data.[a] > data[b] ? a : b))
-  );
+  const [maxKey, setMaxKey] = useState("");
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("result") ?? "");
@@ -24,6 +21,12 @@ export default function Result() {
     console.log(Array.from(data), img);
     setData(data);
     setImage(img);
+    if (data) {
+      const max = Object.keys(data).find(
+        (key) => Number(data[key]) === Math.max(...Object.values(data))
+      );
+      setMaxKey(max);
+    }
   }, []);
 
   return (
@@ -46,7 +49,7 @@ export default function Result() {
         />
       </div>
 
-      <p className="text-black mt-10 text-center w-80">{}</p>
+      <p className="text-black mt-10 text-center px-80">{shape[maxKey]}</p>
       <div className="mt-10">
         <ul className="flex flex-col">
           {Object.entries(data).map(([key, value]) => (
