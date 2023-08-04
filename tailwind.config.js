@@ -14,7 +14,7 @@ module.exports = {
       },
       keyframes: {
         scanning: {
-          "100%": { transform: "translate(0, 230px)" },
+          "100%": { transform: "translate(0, 200px)" },
         },
       },
       animation: {

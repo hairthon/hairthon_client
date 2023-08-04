@@ -19,6 +19,10 @@ export function UploadImage() {
     setImg(file);
     if (file) {
       const reader = new FileReader();
+      console.log(
+        "🚀 ~ file: UploadImage.tsx:22 ~ handleImageChange ~ reader:",
+        reader.result
+      );
 
       reader.onloadend = () => {
         setSelectedImages((prev) => [...prev, reader.result as string]);
@@ -34,16 +38,18 @@ export function UploadImage() {
     try {
       const formData = new FormData();
       formData.append("file", img);
-      const data = await api.post("/dl_Img", formData, {
+      const { data } = await api.post("/dl_Img", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+      localStorage.setItem("formData", selectedImages[0]);
+      localStorage.setItem("result", JSON.stringify(data));
       console.log(data);
+      query.mode == "analyze"
+        ? push("/result?mode=analyze")
+        : push("/result?mode=synthesis");
     } catch (error) {
       console.error();
     }
-    // query.mode == "analyze"
-    //   ? push("/result?mode=analyze")
-    //   : push("/result?mode=synthesis");
   };
 
   const info = () => {
