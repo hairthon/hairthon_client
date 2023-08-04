@@ -210,7 +210,7 @@ export function UploadImage() {
           합성하기
         </button>
       )}
-      {image && <img src={image} alt="" />}
+      {image && <img className="mt-20" src={image} alt="" />}
     </>
   );
 }
