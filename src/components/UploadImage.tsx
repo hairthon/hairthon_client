@@ -14,6 +14,7 @@ export function UploadImage() {
   const [fileName2, setFileName2] = useState("");
   const [img, setImg] = useState<File | string>("");
   const [img2, setImg2] = useState<File | string>("");
+  const [image, setImage] = useState("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
@@ -72,10 +73,15 @@ export function UploadImage() {
       formData.append("fileName2", fileName2);
       const { data } = await api.post("/fusion", formData, {
         headers: { "Content-Type": "multipart/form-data" },
+        responseType: "arraybuffer",
       });
 
-      localStorage.setItem("image", JSON.stringify(data));
-      push("/hairstyle");
+      // localStorage.setItem("image", JSON.stringify(data));
+
+      const blob = new Blob([data], { type: "image/jpeg" });
+      const imageUrl = URL.createObjectURL(blob);
+      setImage(imageUrl);
+      // push("/hairstyle");
     } catch (error) {
       console.error();
     }
@@ -204,6 +210,7 @@ export function UploadImage() {
           합성하기
         </button>
       )}
+      {image && <img src={image} alt="" />}
     </>
   );
 }
