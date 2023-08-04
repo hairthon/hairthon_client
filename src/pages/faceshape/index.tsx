@@ -48,7 +48,7 @@ export default function Result() {
           priority
         />
       </div>
-
+      <h1>test</h1>
       {/* <p className="text-black mt-10 text-center px-80">{shape[maxKey]}</p> */}
       <div className="mt-10">
         <ul className="flex flex-col">
