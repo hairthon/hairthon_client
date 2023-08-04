@@ -22,10 +22,10 @@ export default function Result() {
     setData(data);
     setImage(img);
     if (data) {
-      const max = Object.keys(data).find(
-        (key) => Number(data[key]) === Math.max(...Object.values(data))
-      );
-      setMaxKey(max);
+      // const max = Object.keys(data).find(
+      //   (key) => Number(data[key]) === Math.max(...Object.values(data))
+      // );
+      // setMaxKey(max);
     }
   }, []);
 
@@ -49,7 +49,7 @@ export default function Result() {
         />
       </div>
 
-      <p className="text-black mt-10 text-center px-80">{shape[maxKey]}</p>
+      {/* <p className="text-black mt-10 text-center px-80">{shape[maxKey]}</p> */}
       <div className="mt-10">
         <ul className="flex flex-col">
           {Object.entries(data).map(([key, value]) => (
