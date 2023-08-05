@@ -109,7 +109,7 @@ export function UploadImage() {
   };
 
   useEffect(() => {
-    info();
+    // info();
   }, []);
 
   const onChange = (e: RadioChangeEvent) => {
@@ -257,7 +257,7 @@ export function UploadImage() {
           {query.mode === "analyze" ? (
             !isLoading ? (
               <button
-                className={`px-3 py-2 rounded-lg mt-5 ${
+                className={`px-3 py-2 rounded-lg mt-5 text-white ${
                   selectedImage1 ? "bg-black hover:bg-sky-600" : "bg-gray-400"
                 }`}
                 onClick={handleAnalyze}
