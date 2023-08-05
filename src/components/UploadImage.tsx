@@ -1,5 +1,13 @@
 import { api } from "@/pages/api/api-config";
-import { Button, Modal, Radio, RadioChangeEvent, Space, Spin } from "antd";
+import {
+  Alert,
+  Button,
+  Modal,
+  Radio,
+  RadioChangeEvent,
+  Space,
+  Spin,
+} from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -62,6 +70,19 @@ export function UploadImage() {
       push("/faceshape");
     } catch (error) {
       console.error(error);
+      return (
+        <>
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Alert
+              message="Warning"
+              description="담당자 : 이영우 / 메일 : eoduq6464@naver.com"
+              type="warning"
+              showIcon
+              closable
+            />
+          </Space>
+        </>
+      );
     }
   };
 
@@ -83,6 +104,19 @@ export function UploadImage() {
       setImage(imageUrl);
     } catch (error) {
       console.error(error);
+      return (
+        <>
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Alert
+              message="Warning"
+              description="담당자 : 이영우 / 메일 : eoduq6464@naver.com"
+              type="warning"
+              showIcon
+              closable
+            />
+          </Space>
+        </>
+      );
     } finally {
       setIsLoading(false);
     }
@@ -90,18 +124,38 @@ export function UploadImage() {
 
   const info = () => {
     Modal.info({
-      title: "정확한 결과를 받기위해 지켜주세요!",
+      width: "500px",
+      title: "꼭 읽어주세요!",
       content: (
-        <>
+        <div>
           <p className="text-gray-500">{"<예시사진>"}</p>
           <img src="/example.png" alt="" className="mb-5" />
           <div>
-            <p>- 예시 사진과 같이 얼굴이 나온 부분을 확대해서 잘라주세요</p>
-            <p>- 얼굴이 가려진 사진은 인식이 불가능합니다</p>
-            <p>- 해상도가 높을수록 결과가 잘 나옵니다</p>
-            <p>- .png .jpg 확장자 사진만 가능합니다</p>
+            <b>📌 필수 조건</b>
+            <p>
+              1. 측면사진은 힘들어요😂 얼굴의 모든 부분이 잘 보이는 사진이어야
+              해요.
+            </p>
+            <p>2. 모자이크된 사진은 🙅‍♀️ 얼굴이 가려지지 않은 사진이어야해요. </p>
+            <p>
+              3. PNG와 JPG 이미지만 업로드 가능해요 그 외 파일은 지원하지
+              않아요.😥
+            </p>
+            <p>4. 합성클릭은 한번만! AI가 아파해요,,</p>
+            <br />
+            <b>😀 더 좋은 결과를 위해</b>
+            <p>1. 얼굴이 확대된 사진이면👍 AI가 얼굴분석을 더 잘해요.</p>
+            <p>2. 이마가 드러난다면 👍 자연스러운 합성이 가능해요.</p>
+            <p>
+              3. 조명이 균일한 사진이라면👍 너무 밝거나 어두운 사진은 인식이
+              어려워요.
+            </p>
+            <p>
+              4. 보다 선명한 사진이라면 👍 기본화질이 좋으면 좋을수록 결과가
+              좋아요.
+            </p>
           </div>
-        </>
+        </div>
       ),
       okType: "default",
       onOk() {},
@@ -109,7 +163,7 @@ export function UploadImage() {
   };
 
   useEffect(() => {
-    // info();
+    info();
   }, []);
 
   const onChange = (e: RadioChangeEvent) => {
@@ -233,7 +287,7 @@ export function UploadImage() {
       <div>
         <Space wrap>
           <Button className="mt-5" onClick={info}>
-            좀 더 좋은 결과를 받기 위한 방법
+            꼭 읽어주세요!
           </Button>
         </Space>
       </div>
