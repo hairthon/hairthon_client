@@ -1,6 +1,7 @@
 import { api } from "@/pages/api/api-config";
 import { Button, Modal, Space, Spin } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -114,84 +115,88 @@ export function UploadImage() {
   return (
     <>
       <div className="flex items-center mt-20 gap-10">
-        <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
-          <label htmlFor="upload">
-            {selectedImage1 ? (
-              <div className="relative">
-                <Image
-                  className="cursor-pointer"
-                  src={selectedImage1}
-                  alt="landing"
-                  width={200}
-                  height={0}
-                  priority
-                />
-                {isLoading && (
-                  <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
-                )}
-              </div>
-            ) : (
-              <Image
-                className="cursor-pointer"
-                src={"/solar-camera-bold.svg"}
-                alt="landing"
-                width={200}
-                height={0}
-                priority
-              />
-            )}
-          </label>
-          <input
-            id="upload"
-            type="file"
-            alt="이미지 업로드"
-            accept="image/jpg, image/png"
-            className="hidden"
-            onChange={handleImageChange}
-          />
-        </form>
-
-        {query.mode === "synthesis" && (
-          <div className="flex flex-col items-center">
-            <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
-              <label htmlFor="upload2">
-                {selectedImage2 ? (
-                  <div className="relative">
-                    <Image
-                      className="cursor-pointer"
-                      src={selectedImage2}
-                      alt="landing"
-                      width={200}
-                      height={0}
-                      priority
-                    />
-                    {isLoading && (
-                      <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
-                    )}
-                  </div>
-                ) : (
+        <div className="flex gap-10 items-center justify-center">
+          <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
+            <label htmlFor="upload">
+              {selectedImage1 ? (
+                <div className="relative">
                   <Image
                     className="cursor-pointer"
-                    src={"/solar-camera-bold.svg"}
+                    src={selectedImage1}
                     alt="landing"
                     width={200}
                     height={0}
                     priority
                   />
-                )}
-              </label>
-              <input
-                id="upload2"
-                type="file"
-                alt="이미지 업로드"
-                accept="image/jpg, image/png"
-                className="hidden"
-                onChange={handleImageChange2}
-              />
-            </form>
-            <p className="text-black">원하는 헤어스타일을 한 사람의 사진</p>
-          </div>
-        )}
+                  {isLoading && (
+                    <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
+                  )}
+                </div>
+              ) : (
+                <Image
+                  className="cursor-pointer"
+                  src={"/solar-camera-bold.svg"}
+                  alt="landing"
+                  width={200}
+                  height={0}
+                  priority
+                />
+              )}
+            </label>
+            <input
+              id="upload"
+              type="file"
+              alt="이미지 업로드"
+              accept="image/jpg, image/png"
+              className="hidden"
+              onChange={handleImageChange}
+            />
+          </form>
+          {image && (
+            <img className="mt-20" src={image} alt="헤어스타일 합성이미지" />
+          )}
+          {query.mode === "synthesis" && (
+            <div className="flex flex-col items-center">
+              <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
+                <label htmlFor="upload2">
+                  {selectedImage2 ? (
+                    <div className="relative">
+                      <Image
+                        className="cursor-pointer"
+                        src={selectedImage2}
+                        alt="landing"
+                        width={200}
+                        height={0}
+                        priority
+                      />
+                      {isLoading && (
+                        <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
+                      )}
+                    </div>
+                  ) : (
+                    <Image
+                      className="cursor-pointer"
+                      src={"/solar-camera-bold.svg"}
+                      alt="landing"
+                      width={200}
+                      height={0}
+                      priority
+                    />
+                  )}
+                </label>
+                <input
+                  id="upload2"
+                  type="file"
+                  alt="이미지 업로드"
+                  accept="image/jpg, image/png"
+                  className="hidden"
+                  onChange={handleImageChange2}
+                />
+              </form>
+              <p className="text-black">원하는 헤어스타일을 한 사람의 사진</p>
+            </div>
+          )}
+        </div>
       </div>
 
       <div>
@@ -201,35 +206,48 @@ export function UploadImage() {
           </Button>
         </Space>
       </div>
-      {query.mode === "analyze" ? (
-        !isLoading ? (
+      {image ? (
+        <div className="flex gap-10">
           <button
-            className={`px-3 py-2 rounded-lg mt-5 ${
-              selectedImage1 ? "bg-black" : "bg-gray-400"
-            }`}
-            onClick={handleAnalyze}
-            disabled={!selectedImage1}
+            onClick={() => window.location.reload()}
+            className="px-3 py-2 rounded-lg mt-5 bg-black"
           >
-            분석하기
+            다시 해보기
           </button>
-        ) : (
-          <Spin className="mt-10" />
-        )
-      ) : !isLoading ? (
-        <button
-          className={`px-3 py-2 rounded-lg mt-5 ${
-            selectedImage2 ? "bg-black" : "bg-gray-400"
-          }`}
-          onClick={handleSynthesis}
-          disabled={!!!selectedImage2}
-        >
-          합성하기
-        </button>
+          <Link className="px-3 py-2 rounded-lg mt-5 bg-black" href={"/"}>
+            홈으로
+          </Link>
+        </div>
       ) : (
-        <Spin className="mt-10" />
-      )}
-      {image && (
-        <img className="mt-20" src={image} alt="헤어스타일 합성이미지" />
+        <>
+          {query.mode === "analyze" ? (
+            !isLoading ? (
+              <button
+                className={`px-3 py-2 rounded-lg mt-5 ${
+                  selectedImage1 ? "bg-black" : "bg-gray-400"
+                }`}
+                onClick={handleAnalyze}
+                disabled={!selectedImage1}
+              >
+                분석하기
+              </button>
+            ) : (
+              <Spin className="mt-10" />
+            )
+          ) : !isLoading ? (
+            <button
+              className={`px-3 py-2 rounded-lg mt-5 ${
+                selectedImage2 ? "bg-black" : "bg-gray-400"
+              }`}
+              onClick={handleSynthesis}
+              disabled={!!!selectedImage2}
+            >
+              합성하기
+            </button>
+          ) : (
+            <Spin className="mt-10" />
+          )}
+        </>
       )}
     </>
   );
