@@ -115,9 +115,12 @@ export function UploadImage() {
 
   return (
     <>
-      <div className="flex items-center mt-20 gap-10">
+      <div className="flex items-center mt-10 gap-10">
         <div className="flex gap-10 items-start justify-center">
           <div className="flex flex-col items-center">
+            <p className="text-black mb-5">
+              <b>본인 사진</b>을 업로드 해주세요
+            </p>
             <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
               <label htmlFor="upload">
                 {selectedImage1 ? (
@@ -154,7 +157,6 @@ export function UploadImage() {
                 onChange={handleImageChange}
               />
             </form>
-            <p className="text-black">내 사진</p>
           </div>
           {image && (
             <div className="bg-black w-max h-max relative p-10 flex flex-col items-center">
@@ -175,6 +177,9 @@ export function UploadImage() {
           )}
           {query.mode === "synthesis" && (
             <div className="flex flex-col items-center">
+              <p className="text-black mb-5">
+                <b>합성 할</b> 사진을 업로드 해주세요
+              </p>
               <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
                 <label htmlFor="upload2">
                   {selectedImage2 ? (
@@ -211,7 +216,6 @@ export function UploadImage() {
                   onChange={handleImageChange2}
                 />
               </form>
-              <p className="text-black">원하는 헤어스타일을 한 사람의 사진</p>
             </div>
           )}
         </div>
