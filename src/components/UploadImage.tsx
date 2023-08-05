@@ -241,12 +241,12 @@ export function UploadImage() {
         <div className="flex gap-10">
           <button
             onClick={() => window.location.reload()}
-            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600"
+            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600 text-white"
           >
             다시 해보기
           </button>
           <Link
-            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600"
+            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600 text-white"
             href={"/"}
           >
             홈으로
@@ -270,7 +270,7 @@ export function UploadImage() {
             )
           ) : !isLoading ? (
             <button
-              className={`px-3 py-2 rounded-lg mt-5 ${
+              className={`px-3 py-2 rounded-lg mt-5 text-white${
                 selectedImage2 ? "bg-black hover:bg-sky-600" : "bg-gray-400"
               }`}
               onClick={handleSynthesis}

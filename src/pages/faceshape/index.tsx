@@ -73,13 +73,13 @@ export default function Result() {
       </div>
       <div className="flex gap-10">
         <Link
-          className="p-3 bg-black rounded-full mt-10 hover:bg-sky-600"
+          className="p-3 bg-black rounded-full mt-10 hover:bg-sky-600 text-white"
           href={"/upload?mode=analyze"}
         >
           다시 해보기
         </Link>
         <Link
-          className="p-3 bg-black rounded-full mt-10 hover:bg-sky-600"
+          className="p-3 bg-black rounded-full mt-10 hover:bg-sky-600 text-white"
           href={"/upload?mode=synthesis"}
         >
           나랑 어울리는 머리 합성해보기

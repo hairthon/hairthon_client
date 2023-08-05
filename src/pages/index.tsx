@@ -18,7 +18,6 @@ export default function Home() {
           height={0}
           priority
         />
-        <h1> TEST </h1>
         <h3 className="w-81 mt-10 text-black text-center font-Pretendard text-base font-normal leading-7 mb-10">
           <b>
             이젠 더이상 머리 스타일로 고민하지 마세요!
