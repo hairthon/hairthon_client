@@ -14,9 +14,9 @@ export const SHAPE: ShapeType = {
 };
 
 export const koreanKeyMappings: ShapeType = {
-  egg: "달걀형",
+  egg: "계란형",
   long: "긴 얼굴형",
   square: "네모형",
-  round: "동글동글한 턱선",
+  round: "둥근 얼굴형",
   heart_tri: "하트/역삼각형 얼굴형",
 };
