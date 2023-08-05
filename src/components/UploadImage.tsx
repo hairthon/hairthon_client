@@ -87,6 +87,8 @@ export function UploadImage() {
       // push("/hairstyle");
     } catch (error) {
       console.error();
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -216,7 +218,7 @@ export function UploadImage() {
           합성하기
         </button>
       ) : (
-        <Spin />
+        <Spin className="mt-10" />
       )}
       {image && <img className="mt-20" src={image} alt="" />}
     </>
