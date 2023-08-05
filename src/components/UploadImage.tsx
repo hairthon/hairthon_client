@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
-// 본인 사진과 합성 할 사진 나눠서 넣어야함
-// file1 === target === 본인얼굴
 export function UploadImage() {
   const { query, push } = useRouter();
   const [selectedImage1, setSelectedImage1] = useState("");
@@ -79,12 +77,9 @@ export function UploadImage() {
         responseType: "arraybuffer",
       });
 
-      // localStorage.setItem("image", JSON.stringify(data));
-
       const blob = new Blob([data], { type: "image/jpeg" });
       const imageUrl = URL.createObjectURL(blob);
       setImage(imageUrl);
-      // push("/hairstyle");
     } catch (error) {
       console.error();
     } finally {
@@ -122,14 +117,19 @@ export function UploadImage() {
         <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
           <label htmlFor="upload">
             {selectedImage1 ? (
-              <Image
-                className="cursor-pointer"
-                src={selectedImage1}
-                alt="landing"
-                width={200}
-                height={0}
-                priority
-              />
+              <div className="relative">
+                <Image
+                  className="cursor-pointer"
+                  src={selectedImage1}
+                  alt="landing"
+                  width={200}
+                  height={0}
+                  priority
+                />
+                {isLoading && (
+                  <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
+                )}
+              </div>
             ) : (
               <Image
                 className="cursor-pointer"
@@ -150,19 +150,25 @@ export function UploadImage() {
             onChange={handleImageChange}
           />
         </form>
+
         {query.mode === "synthesis" && (
           <div className="flex flex-col items-center">
             <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
               <label htmlFor="upload2">
                 {selectedImage2 ? (
-                  <Image
-                    className="cursor-pointer"
-                    src={selectedImage2}
-                    alt="landing"
-                    width={200}
-                    height={0}
-                    priority
-                  />
+                  <div className="relative">
+                    <Image
+                      className="cursor-pointer"
+                      src={selectedImage2}
+                      alt="landing"
+                      width={200}
+                      height={0}
+                      priority
+                    />
+                    {isLoading && (
+                      <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
+                    )}
+                  </div>
                 ) : (
                   <Image
                     className="cursor-pointer"
@@ -190,13 +196,15 @@ export function UploadImage() {
 
       <div>
         <Space wrap>
-          <Button onClick={info}>좀 더 좋은 결과를 받기 위한 방법</Button>
+          <Button className="mt-5" onClick={info}>
+            좀 더 좋은 결과를 받기 위한 방법
+          </Button>
         </Space>
       </div>
       {query.mode === "analyze" ? (
         !isLoading ? (
           <button
-            className={`px-3 py-2 rounded-lg mt-10 ${
+            className={`px-3 py-2 rounded-lg mt-5 ${
               selectedImage1 ? "bg-black" : "bg-gray-400"
             }`}
             onClick={handleAnalyze}
@@ -209,7 +217,7 @@ export function UploadImage() {
         )
       ) : !isLoading ? (
         <button
-          className={`px-3 py-2 rounded-lg mt-10 ${
+          className={`px-3 py-2 rounded-lg mt-5 ${
             selectedImage2 ? "bg-black" : "bg-gray-400"
           }`}
           onClick={handleSynthesis}
@@ -220,7 +228,9 @@ export function UploadImage() {
       ) : (
         <Spin className="mt-10" />
       )}
-      {image && <img className="mt-20" src={image} alt="" />}
+      {image && (
+        <img className="mt-20" src={image} alt="헤어스타일 합성이미지" />
+      )}
     </>
   );
 }
