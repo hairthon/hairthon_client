@@ -1,5 +1,5 @@
 import { api } from "@/pages/api/api-config";
-import { Button, Modal, Space, Spin } from "antd";
+import { Button, Modal, Radio, RadioChangeEvent, Space, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -111,12 +111,25 @@ export function UploadImage() {
     // info();
   }, []);
 
+  const [value, setValue] = useState(1);
+
+  const onChange = (e: RadioChangeEvent) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value);
+  };
+
   return (
     <>
-      <div className="flex items-center mt-10 gap-10">
+      <div className="flex items-center mt-7 gap-10">
         <div className="flex gap-10 items-start justify-center">
           <div className="flex flex-col items-center">
-            <p className="text-black mb-5">
+            {query.mode === "analyze" && (
+              <Radio.Group onChange={onChange} value={value} className="mb-5">
+                <Radio value={1}>남자</Radio>
+                <Radio value={2}>여자</Radio>
+              </Radio.Group>
+            )}
+            <p className="text-black mb-3">
               <b>본인 사진</b>을 업로드 해주세요
             </p>
             <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
@@ -175,7 +188,7 @@ export function UploadImage() {
           )}
           {query.mode === "synthesis" && (
             <div className="flex flex-col items-center">
-              <p className="text-black mb-5">
+              <p className="text-black mb-3">
                 <b>합성 할</b> 사진을 업로드 해주세요
               </p>
               <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
@@ -244,7 +257,7 @@ export function UploadImage() {
             !isLoading ? (
               <button
                 className={`px-3 py-2 rounded-lg mt-5 ${
-                  selectedImage1 ? "bg-black" : "bg-gray-400"
+                  selectedImage1 ? "bg-black hover:bg-sky-700" : "bg-gray-400"
                 }`}
                 onClick={handleAnalyze}
                 disabled={!selectedImage1}

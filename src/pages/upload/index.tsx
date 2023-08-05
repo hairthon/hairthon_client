@@ -5,7 +5,7 @@ export default function Upload() {
   return (
     <main className={`flex min-h-screen flex-col items-center bg-white py-10`}>
       <Image
-        className="mt-20"
+        className="mt-10"
         src={"/subtract.svg"}
         alt="landing"
         width={200}
