@@ -25,7 +25,7 @@ export default function Home() {
           </b>
         </h3>
       </section>
-      <section className="flex items-center justify-between py-10 w-1/4">
+      <section className="flex items-center bg-black py-10 w-full h-full justify-center gap-20">
         <Link
           href={"/upload?mode=analyze"}
           className="w-40 flex flex-col items-center"
@@ -37,7 +37,7 @@ export default function Home() {
             priority
             alt={"얼굴형 분석"}
           />
-          <p>내 얼굴형 분석하기</p>
+          <p className="text-white">내 얼굴형 분석하기</p>
         </Link>
         <Link
           href={"/upload?mode=synthesis"}
@@ -50,7 +50,7 @@ export default function Home() {
             priority
             alt={"헤어 합성"}
           />
-          <p>머리 합성 해보기</p>
+          <p className="text-white">머리 합성 해보기</p>
         </Link>
       </section>
     </main>
