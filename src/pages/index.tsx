@@ -13,7 +13,7 @@ export default function Home() {
         <Image
           className="relative mt-10"
           src={"/subtract.svg"}
-          alt="landing"
+          alt="logo"
           width={300}
           height={0}
           priority

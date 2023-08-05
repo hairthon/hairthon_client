@@ -40,18 +40,12 @@ export default function Result() {
 
   return (
     <main className={`flex flex-col items-center h-full bg-white py-10`}>
-      <Image
-        src={"/subtract.svg"}
-        alt="landing"
-        width={200}
-        height={0}
-        priority
-      />
+      <Image src={"/subtract.svg"} alt="logo" width={200} height={0} priority />
       <div className="relative">
         <Image
           className="mt-20 "
           src={image}
-          alt="landing"
+          alt="logo"
           width={200}
           height={300}
           priority

@@ -7,7 +7,7 @@ export default function Upload() {
       <Image
         className="mt-10"
         src={"/subtract.svg"}
-        alt="landing"
+        alt="logo"
         width={200}
         height={0}
         priority

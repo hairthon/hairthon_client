@@ -109,7 +109,7 @@ export function UploadImage() {
   };
 
   useEffect(() => {
-    // info();
+    info();
   }, []);
 
   const onChange = (e: RadioChangeEvent) => {
@@ -127,7 +127,7 @@ export function UploadImage() {
                 <Radio value={2}>여자</Radio>
               </Radio.Group>
             )}
-            <p className="text-black mb-3">
+            <p className="text-black mb-1">
               <b>본인 사진</b>을 업로드 해주세요
             </p>
             <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
@@ -137,7 +137,7 @@ export function UploadImage() {
                     <Image
                       className="cursor-pointer"
                       src={selectedImage1}
-                      alt="landing"
+                      alt="logo"
                       width={200}
                       height={0}
                       priority
@@ -150,7 +150,7 @@ export function UploadImage() {
                   <Image
                     className="cursor-pointer"
                     src={"/solar-camera-bold.svg"}
-                    alt="landing"
+                    alt="logo"
                     width={200}
                     height={0}
                     priority
@@ -177,7 +177,7 @@ export function UploadImage() {
               <Image
                 className="mt-10"
                 src={"/Subtract (1).svg"}
-                alt="landing"
+                alt="logo"
                 width={100}
                 height={0}
                 priority
@@ -186,7 +186,7 @@ export function UploadImage() {
           )}
           {query.mode === "synthesis" && (
             <div className="flex flex-col items-center">
-              <p className="text-black mb-3">
+              <p className="text-black mb-1">
                 <b>합성 할</b> 사진을 업로드 해주세요
               </p>
               <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
@@ -196,7 +196,7 @@ export function UploadImage() {
                       <Image
                         className="cursor-pointer"
                         src={selectedImage2}
-                        alt="landing"
+                        alt="logo"
                         width={200}
                         height={0}
                         priority
@@ -209,7 +209,7 @@ export function UploadImage() {
                     <Image
                       className="cursor-pointer"
                       src={"/solar-camera-bold.svg"}
-                      alt="landing"
+                      alt="logo"
                       width={200}
                       height={0}
                       priority
