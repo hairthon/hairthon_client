@@ -1,4 +1,4 @@
-import { shape } from "@/lib/const";
+import { SHAPE } from "@/lib/const";
 import { Progress } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ export default function Result() {
     round: 0,
     square: 0,
   });
-  const [maxKey, setMaxKey] = useState("");
+  const [maxKey, setMaxKey] = useState<string>("");
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("result") ?? "");
@@ -22,10 +22,19 @@ export default function Result() {
     setData(data);
     setImage(img);
     if (data) {
-      // const max = Object.keys(data).find(
-      //   (key) => Number(data[key]) === Math.max(...Object.values(data))
-      // );
-      // setMaxKey(max);
+      let maxKey = "";
+      let maxValue = -Infinity;
+
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          if (data[key] > maxValue) {
+            maxValue = data[key];
+            maxKey = key;
+          }
+        }
+      }
+
+      setMaxKey(maxKey);
     }
   }, []);
 
@@ -48,8 +57,9 @@ export default function Result() {
           priority
         />
       </div>
-      <h1>test</h1>
-      {/* <p className="text-black mt-10 text-center px-80">{shape[maxKey]}</p> */}
+      <p className="text-black mt-10 px-80 text-center">
+        {maxKey && SHAPE[maxKey]}
+      </p>
       <div className="mt-10">
         <ul className="flex flex-col">
           {Object.entries(data).map(([key, value]) => (
