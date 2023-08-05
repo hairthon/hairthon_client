@@ -15,6 +15,7 @@ export function UploadImage() {
   const [img2, setImg2] = useState<File | string>("");
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [value, setValue] = useState(1);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
@@ -111,10 +112,7 @@ export function UploadImage() {
     // info();
   }, []);
 
-  const [value, setValue] = useState(1);
-
   const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
   };
 
@@ -243,11 +241,14 @@ export function UploadImage() {
         <div className="flex gap-10">
           <button
             onClick={() => window.location.reload()}
-            className="px-3 py-2 rounded-lg mt-5 bg-black"
+            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600"
           >
             다시 해보기
           </button>
-          <Link className="px-3 py-2 rounded-lg mt-5 bg-black" href={"/"}>
+          <Link
+            className="px-3 py-2 rounded-lg mt-5 bg-black hover:bg-sky-600"
+            href={"/"}
+          >
             홈으로
           </Link>
         </div>
@@ -257,7 +258,7 @@ export function UploadImage() {
             !isLoading ? (
               <button
                 className={`px-3 py-2 rounded-lg mt-5 ${
-                  selectedImage1 ? "bg-black hover:bg-sky-700" : "bg-gray-400"
+                  selectedImage1 ? "bg-black hover:bg-sky-600" : "bg-gray-400"
                 }`}
                 onClick={handleAnalyze}
                 disabled={!selectedImage1}
@@ -270,7 +271,7 @@ export function UploadImage() {
           ) : !isLoading ? (
             <button
               className={`px-3 py-2 rounded-lg mt-5 ${
-                selectedImage2 ? "bg-black" : "bg-gray-400"
+                selectedImage2 ? "bg-black hover:bg-sky-600" : "bg-gray-400"
               }`}
               onClick={handleSynthesis}
               disabled={!!!selectedImage2}
