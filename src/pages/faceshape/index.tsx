@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function Result() {
   const [image, setImage] = useState("");
+  console.log("🚀 ~ file: index.tsx:9 ~ Result ~ image:", image);
   const [data, setData] = useState({
     heart_tri: 0,
     long: 0,
@@ -76,12 +77,20 @@ export default function Result() {
           })}
         </ul>
       </div>
-      <Link
-        className="p-3 bg-black rounded-full mt-10"
-        href={"/upload?mode=synthesis"}
-      >
-        나랑 어울리는 머리 합성해보기
-      </Link>
+      <div className="flex gap-10">
+        <Link
+          className="p-3 bg-black rounded-full mt-10"
+          href={"/upload?mode=analyze"}
+        >
+          다시 해보기
+        </Link>
+        <Link
+          className="p-3 bg-black rounded-full mt-10"
+          href={"/upload?mode=synthesis"}
+        >
+          나랑 어울리는 머리 합성해보기
+        </Link>
+      </div>
     </main>
   );
 }

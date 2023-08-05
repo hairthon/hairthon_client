@@ -14,8 +14,6 @@ export function UploadImage() {
   const [img, setImg] = useState<File | string>("");
   const [img2, setImg2] = useState<File | string>("");
   const [image, setImage] = useState("");
-  console.log("🚀 ~ file: UploadImage.tsx:17 ~ UploadImage ~ image:", image);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

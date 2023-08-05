@@ -8,7 +8,6 @@ export default function HairStyle() {
     const img = localStorage.getItem("image") ?? "";
     const blob = new Blob([img], { type: "image/jpeg" });
     const imageUrl = URL.createObjectURL(blob);
-    console.log("🚀 ~ file: index.tsx:11 ~ useEffect ~ imageUrl:", imageUrl);
     setImage(imageUrl);
   }, []);
 
