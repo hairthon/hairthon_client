@@ -17,8 +17,8 @@ export default function Document() {
         />
         <meta property="og:site_name" content="SELECT MY HAIR" />
         <meta property="og:locale" content="ko_KO" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        {/* <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" /> */}
         <link rel="icon" href="/favicon.svg" type="image/png" />
       </Head>
       <body>
