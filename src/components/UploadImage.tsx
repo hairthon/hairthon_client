@@ -270,7 +270,7 @@ export function UploadImage() {
             )
           ) : !isLoading ? (
             <button
-              className={`px-3 py-2 rounded-lg mt-5 text-white${
+              className={`px-3 py-2 rounded-lg mt-5 text-white ${
                 selectedImage2 ? "bg-black hover:bg-sky-600" : "bg-gray-400"
               }`}
               onClick={handleSynthesis}
