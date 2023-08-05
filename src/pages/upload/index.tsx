@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Upload() {
   return (
-    <main className={`flex min-h-screen flex-col items-center bg-white`}>
+    <main className={`flex min-h-screen flex-col items-center bg-white py-10`}>
       <Image
         className="mt-20"
         src={"/subtract.svg"}

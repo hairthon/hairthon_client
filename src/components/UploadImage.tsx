@@ -14,6 +14,7 @@ export function UploadImage() {
   const [img, setImg] = useState<File | string>("");
   const [img2, setImg2] = useState<File | string>("");
   const [image, setImage] = useState("");
+  console.log("🚀 ~ file: UploadImage.tsx:17 ~ UploadImage ~ image:", image);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -61,7 +62,7 @@ export function UploadImage() {
       localStorage.setItem("result", JSON.stringify(data));
       push("/faceshape");
     } catch (error) {
-      console.error();
+      console.error(error);
     }
   };
 
@@ -82,7 +83,7 @@ export function UploadImage() {
       const imageUrl = URL.createObjectURL(blob);
       setImage(imageUrl);
     } catch (error) {
-      console.error();
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -115,45 +116,62 @@ export function UploadImage() {
   return (
     <>
       <div className="flex items-center mt-20 gap-10">
-        <div className="flex gap-10 items-center justify-center">
-          <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
-            <label htmlFor="upload">
-              {selectedImage1 ? (
-                <div className="relative">
+        <div className="flex gap-10 items-start justify-center">
+          <div className="flex flex-col items-center">
+            <form className="w-80 h-80 flex-shrink-0 rounded-[50px] bg-black flex items-center justify-center mb-5">
+              <label htmlFor="upload">
+                {selectedImage1 ? (
+                  <div className="relative">
+                    <Image
+                      className="cursor-pointer"
+                      src={selectedImage1}
+                      alt="landing"
+                      width={200}
+                      height={0}
+                      priority
+                    />
+                    {isLoading && (
+                      <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
+                    )}
+                  </div>
+                ) : (
                   <Image
                     className="cursor-pointer"
-                    src={selectedImage1}
+                    src={"/solar-camera-bold.svg"}
                     alt="landing"
                     width={200}
                     height={0}
                     priority
                   />
-                  {isLoading && (
-                    <div className="absolute top-0 drop-shadow-lg bg-gradient-to-b from-green-300 to-green-500 w-full h-1.5 from-transparent to-opacity-80 animate-[scanning_1.5s_linear_infinite]" />
-                  )}
-                </div>
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src={"/solar-camera-bold.svg"}
-                  alt="landing"
-                  width={200}
-                  height={0}
-                  priority
-                />
-              )}
-            </label>
-            <input
-              id="upload"
-              type="file"
-              alt="이미지 업로드"
-              accept="image/jpg, image/png"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </form>
+                )}
+              </label>
+              <input
+                id="upload"
+                type="file"
+                alt="이미지 업로드"
+                accept="image/jpg, image/png"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </form>
+            <p className="text-black">내 사진</p>
+          </div>
           {image && (
-            <img className="mt-20" src={image} alt="헤어스타일 합성이미지" />
+            <div className="bg-black w-max h-max relative p-10 flex flex-col items-center">
+              <img
+                className="rounded-3xl"
+                src={image}
+                alt="헤어스타일 합성이미지"
+              />
+              <Image
+                className="mt-10"
+                src={"/Subtract (1).svg"}
+                alt="landing"
+                width={100}
+                height={0}
+                priority
+              />
+            </div>
           )}
           {query.mode === "synthesis" && (
             <div className="flex flex-col items-center">
