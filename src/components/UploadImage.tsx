@@ -1,5 +1,5 @@
 import { api } from "@/pages/api/api-config";
-import { Button, Modal, Space } from "antd";
+import { Button, Modal, Space, Spin } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -15,6 +15,8 @@ export function UploadImage() {
   const [img, setImg] = useState<File | string>("");
   const [img2, setImg2] = useState<File | string>("");
   const [image, setImage] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
@@ -50,6 +52,7 @@ export function UploadImage() {
 
   const handleAnalyze = async () => {
     try {
+      setIsLoading(true);
       const formData = new FormData();
       formData.append("file", img);
       const { data } = await api.post("/dl_Img", formData, {
@@ -57,7 +60,6 @@ export function UploadImage() {
       });
       localStorage.setItem("image", selectedImage1);
       localStorage.setItem("result", JSON.stringify(data));
-
       push("/faceshape");
     } catch (error) {
       console.error();
@@ -66,6 +68,7 @@ export function UploadImage() {
 
   const handleSynthesis = async () => {
     try {
+      setIsLoading(true);
       const formData = new FormData();
       formData.append("file1", img);
       formData.append("file2", img2);
@@ -188,18 +191,21 @@ export function UploadImage() {
           <Button onClick={info}>좀 더 좋은 결과를 받기 위한 방법</Button>
         </Space>
       </div>
-
       {query.mode === "analyze" ? (
-        <button
-          className={`px-3 py-2 rounded-lg mt-10 ${
-            selectedImage1 ? "bg-black" : "bg-gray-400"
-          }`}
-          onClick={handleAnalyze}
-          disabled={!!!selectedImage1}
-        >
-          분석하기
-        </button>
-      ) : (
+        !isLoading ? (
+          <button
+            className={`px-3 py-2 rounded-lg mt-10 ${
+              selectedImage1 ? "bg-black" : "bg-gray-400"
+            }`}
+            onClick={handleAnalyze}
+            disabled={!selectedImage1}
+          >
+            분석하기
+          </button>
+        ) : (
+          <Spin className="mt-10" />
+        )
+      ) : !isLoading ? (
         <button
           className={`px-3 py-2 rounded-lg mt-10 ${
             selectedImage2 ? "bg-black" : "bg-gray-400"
@@ -209,6 +215,8 @@ export function UploadImage() {
         >
           합성하기
         </button>
+      ) : (
+        <Spin />
       )}
       {image && <img className="mt-20" src={image} alt="" />}
     </>

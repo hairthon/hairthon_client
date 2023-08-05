@@ -18,7 +18,6 @@ export default function Result() {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("result") ?? "");
     const img = localStorage.getItem("image") ?? "";
-    console.log(Array.from(data), img);
     setData(data);
     setImage(img);
     if (data) {
