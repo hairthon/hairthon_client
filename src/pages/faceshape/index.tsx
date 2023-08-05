@@ -1,4 +1,4 @@
-import { SHAPE } from "@/lib/const";
+import { SHAPE, koreanKeyMappings } from "@/lib/const";
 import { Progress } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -62,17 +62,19 @@ export default function Result() {
       </p>
       <div className="mt-10">
         <ul className="flex flex-col">
-          {Object.entries(data).map(([key, value]) => (
-            <li key={key} className="flex gap-3 mb-2">
-              <p className="text-black w-full">{key}</p>
-              <Progress
-                percent={Number((value * 100).toFixed(2))}
-                size={[300, 20]}
-                strokeColor={"black"}
-                className="flex justify-center items-center"
-              />
-            </li>
-          ))}
+          {Object.entries(data).map(([key, value]) => {
+            return (
+              <li key={key} className="flex gap-3 mb-2">
+                <p className="text-black w-full">{koreanKeyMappings[key]}</p>
+                <Progress
+                  percent={Number((value * 100).toFixed(2))}
+                  size={[300, 20]}
+                  strokeColor={"black"}
+                  className="flex justify-center items-center"
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
       <Link
