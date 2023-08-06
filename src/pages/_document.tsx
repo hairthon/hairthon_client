@@ -7,10 +7,7 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hairthon.vercel.app" />
         <meta property="og:title" content="SELECT MY HAIR" />
-        <meta
-          property="og:image"
-          content="https://hairthon.vercel.app/public/og.svg"
-        />
+        <meta property="og:image" content="/og.svg" />
         <meta
           property="og:description"
           content="이젠 더이상 머리 스타일로 고민하지 마세요! 나에게 어울리는 머리 스타일을 합성해보세요!"
