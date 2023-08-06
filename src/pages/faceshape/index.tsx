@@ -63,7 +63,7 @@ export default function Result() {
                 <Progress
                   percent={Number((value * 100).toFixed(2))}
                   size={[300, 20]}
-                  strokeColor={`black`}
+                  strokeColor={maxKey === key ? "#0084c7" : "black"}
                   className="flex justify-center items-center"
                 />
               </li>
