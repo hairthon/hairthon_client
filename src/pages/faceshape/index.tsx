@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 export default function Result() {
   const [image, setImage] = useState("");
-  console.log("🚀 ~ file: index.tsx:9 ~ Result ~ image:", image);
   const [data, setData] = useState({
     heart_tri: 0,
     long: 0,
@@ -39,7 +38,7 @@ export default function Result() {
   }, []);
 
   return (
-    <main className={`flex flex-col items-center h-full bg-white py-10`}>
+    <main className={`flex flex-col items-center bg-white py-10 min-w-fit`}>
       <Image src={"/subtract.svg"} alt="logo" width={200} height={0} priority />
       <div className="relative">
         <Image
@@ -51,11 +50,11 @@ export default function Result() {
           priority
         />
       </div>
-      <p className="text-black mt-10 px-80 text-center">
+      <p className="text-black mt-10 text-center w-9/12">
         {maxKey && SHAPE[maxKey]}
       </p>
       <div className="mt-10">
-        <ul className="flex flex-col">
+        <ul className="flex flex-col w-inherit">
           {Object.entries(data).map(([key, value]) => {
             return (
               <li key={key} className="flex gap-3 mb-2">

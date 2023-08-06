@@ -93,7 +93,6 @@ export function UploadImage() {
       const imageUrl = URL.createObjectURL(blob);
       setImage(imageUrl);
     } catch (error) {
-      console.log("에러catch");
       console.error(error + "에러메시지");
     } finally {
       setIsLoading(false);
@@ -119,7 +118,7 @@ export function UploadImage() {
               3. PNG와 JPG 이미지만 업로드 가능해요 그 외 파일은 지원하지
               않아요.😥
             </p>
-            <p>4. 합성클릭은 한번만! AI가 아파해요,,</p>
+            <p>4. 합성클릭은 한번만! AI가 아파해요,,🤒</p>
             <br />
             <b>😀 더 좋은 결과를 위해</b>
             <p>1. 얼굴이 확대된 사진이면👍 AI가 얼굴분석을 더 잘해요.</p>
@@ -141,7 +140,7 @@ export function UploadImage() {
   };
 
   useEffect(() => {
-    info();
+    // info();
   }, []);
 
   const onChange = (e: RadioChangeEvent) => {
@@ -166,7 +165,7 @@ export function UploadImage() {
         </>
       )}
       <div className="flex items-center mt-7 gap-10">
-        <div className="flex gap-10 items-start justify-center">
+        <div className="flex gap-10 items-start justify-center flex-wrap">
           <div className="flex flex-col items-center">
             {query.mode === "analyze" && (
               <Radio.Group onChange={onChange} value={value} className="mb-5">
