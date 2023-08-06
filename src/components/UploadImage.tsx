@@ -8,6 +8,7 @@ import {
   Space,
   Spin,
 } from "antd";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -24,6 +25,7 @@ export function UploadImage() {
   const [image, setImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState(1);
+  const [error, setEroror] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files![0];
@@ -70,19 +72,7 @@ export function UploadImage() {
       push("/faceshape");
     } catch (error) {
       console.error(error);
-      return (
-        <>
-          <Space direction="vertical" style={{ width: "100%" }}>
-            <Alert
-              message="Warning"
-              description="담당자 : 이영우 / 메일 : eoduq6464@naver.com"
-              type="warning"
-              showIcon
-              closable
-            />
-          </Space>
-        </>
-      );
+      setEroror(true);
     }
   };
 
@@ -103,20 +93,8 @@ export function UploadImage() {
       const imageUrl = URL.createObjectURL(blob);
       setImage(imageUrl);
     } catch (error) {
-      console.error(error);
-      return (
-        <>
-          <Space direction="vertical" style={{ width: "100%" }}>
-            <Alert
-              message="Warning"
-              description="담당자 : 이영우 / 메일 : eoduq6464@naver.com"
-              type="warning"
-              showIcon
-              closable
-            />
-          </Space>
-        </>
-      );
+      console.log("에러catch");
+      console.error(error + "에러메시지");
     } finally {
       setIsLoading(false);
     }
@@ -172,6 +150,21 @@ export function UploadImage() {
 
   return (
     <>
+      {error && (
+        <>
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Alert
+              message="서버가 꺼져있습니다."
+              description="1. API서버의 경우, 24시간 배포할 수 없어(일 최대 12시간 서비스 이용 중) 얼굴형 분석, 헤어스타일 합성 서비스가 원활하게 이루어지지 않는 경우가 발생할 수 있습니다. 
+              2. 과제 평가 중 배포가 중지되어있거나 API 에러가 발생한다면 아래 연락처로 꼭 연락 부탁드립니다. 
+              서버 관리자: 이영우 010-9384-7806 eoduq6464@naver.com / 김혜영 010-9159-9671 thfl9671@donga.ac.kr"
+              type="warning"
+              showIcon
+              closable
+            />
+          </Space>
+        </>
+      )}
       <div className="flex items-center mt-7 gap-10">
         <div className="flex gap-10 items-start justify-center">
           <div className="flex flex-col items-center">
