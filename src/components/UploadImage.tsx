@@ -140,7 +140,7 @@ export function UploadImage() {
   };
 
   useEffect(() => {
-    // info();
+    info();
   }, []);
 
   const onChange = (e: RadioChangeEvent) => {
