@@ -3,6 +3,7 @@ import { Progress } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Result() {
   const [image, setImage] = useState("");
@@ -50,8 +51,8 @@ export default function Result() {
           priority
         />
       </div>
-      <p className="text-black mt-10 text-center w-9/12">
-        {maxKey && SHAPE[maxKey]}
+      <p className="text-black mt-10 w-2/3">
+        <ReactMarkdown>{maxKey && SHAPE[maxKey]}</ReactMarkdown>
       </p>
       <div className="mt-10">
         <ul className="flex flex-col w-inherit">
@@ -62,7 +63,7 @@ export default function Result() {
                 <Progress
                   percent={Number((value * 100).toFixed(2))}
                   size={[300, 20]}
-                  strokeColor={"black"}
+                  strokeColor={`black`}
                   className="flex justify-center items-center"
                 />
               </li>
